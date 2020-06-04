@@ -47,6 +47,21 @@ What is the time and space complexity of the counting sort algorithm?
 
 
 def counting_sort(arr, maximum=None):
-    # Your code here
+    if len(arr) <= 1:
+        return arr
+
+    if min(arr) < 0:
+        return 'Error, negative numbers not allowed in Count Sort'
+
+    buckets = [0] * (max(arr) + 1)
+
+    for i in range(len(arr)):
+        buckets[arr[i]] += 1
+
+    for i in range(len(buckets)):
+        buckets[i] += i
+
+    for i in range(len(arr)):
+        arr[i] = buckets[i] - 1
 
     return arr
